@@ -3,7 +3,7 @@ import './App.css';
 import MainPage from './MainPage'
 import Qc from './Qc'
 import ResultePage from './ResultePage'
-
+// import Qc from './Qc'
 
 class App2 extends Component {
   state = {
@@ -86,17 +86,17 @@ class App2 extends Component {
 
   render() {
     const mainpage = <MainPage qcPage={this.state.qcPage} mainPage={this.state.mainPage} changeMainPage={this.changeMainPageHandle} url ={this.TheUrl} />
-var ChangePAge =mainpage;
-    if (this.state.mainPage ){
-    ChangePAge = <Qc qcPage={this.state.qcPage} mainPage={this.state.mainPage} changeMainPage={this.changeMainPageHandle} url ={this.state.url} switchPlayer ={this.switchPlayer} IncreaseScoor= {this.IncreaseScoor} aroow={this.aroow} />
-    }
-    else if  (this.state.resultePage){
-        ChangePAge =<ResultePage Score = {this.state.scoor}/>
-    }
-    else {
-      ChangePAge =mainpage;
+var ChangePAge =<Qc qcPage={this.state.qcPage} mainPage={this.state.mainPage} changeMainPage={this.changeMainPageHandle} url ={this.state.url} switchPlayer ={this.switchPlayer} IncreaseScoor= {this.IncreaseScoor} aroow={this.aroow} />;
+    // if (this.state.mainPage ){
+    // ChangePAge = <Qc qcPage={this.state.qcPage} mainPage={this.state.mainPage} changeMainPage={this.changeMainPageHandle} url ={this.state.url} switchPlayer ={this.switchPlayer} IncreaseScoor= {this.IncreaseScoor} aroow={this.aroow} />
+    // }
+    // else if  (this.state.resultePage){
+    //     ChangePAge =<ResultePage Score = {this.state.scoor}/>
+    // }
+    // else {
+    //   ChangePAge =mainpage;
 
-    }
+    // }
  
     return (
       <div className="App">

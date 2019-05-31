@@ -4,6 +4,7 @@ import BoxOfchoes2 from './BoxOfchoes2'
 import BoxOfchoes3 from './BoxOfchoes3'
 import MainPage from './MainPage'
 import swal from 'sweetalert';
+import array from './Qcr';
 
 
 var list = [0, 1, 2, 3]
@@ -26,10 +27,11 @@ export default class Qc extends Component {
         the_question: "the_question",
         Options: ["Options 1", "Options 2", "Options 3", "Options 4"],
         correctAnswer: '',
-        url: this.props.url,
+        url:"General_Knowledge",
         NameOftype: [],
         Level: "",
-        flash: ['', '', '', '']
+        flash: ['', '', '', ''],
+        boxChoose : "box1"
 
 
 
@@ -48,7 +50,7 @@ export default class Qc extends Component {
             .then(response => {
                 return response.json()
             }).then(data => {
-                // console.log(data.results[0].question)
+                console.log(data.results)
 
                 return this.setState(prevState => ({
                     server: data.results
@@ -170,6 +172,9 @@ export default class Qc extends Component {
         for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
         return o;
     };
+    boxChoose =(e) =>{
+
+    }
 
     // ---------------------------------------------------------
 
@@ -182,8 +187,8 @@ export default class Qc extends Component {
         // console.log(this.state.server3)
         // console.log(this.state[`${this.state.url}`][0])
         // Level ={this.state.server}
-        console.log(this.state.Level)
-        var Data1 = this.state.server.map((ele, i) => {
+        console.log(array)
+        var Data1 = array.map((ele, i) => {
 
             return <BoxOfchoes ele={ele} i={i} the_question={this.theQuestion} />
         })
@@ -219,19 +224,12 @@ export default class Qc extends Component {
                     </div>
                 </div>
                 <section className="qc">
-                    <div>
+                    <div className = "warp ">
                         <div className="box1"> <p>.... Easy .... (5 points)</p></div>  {Data1}
 
                     </div>
 
-                    <div>
-                        <div className="box2"> <p>..Medium.. (7 points)</p> '</div>     {Data2}
-
-                    </div>
-                    <div>
-                        <div className="box3"> <p>.... Hard .... (9 points)</p></div>     {Data3}
-
-                    </div>
+                
                 </section>
             </div>
         )
