@@ -9,7 +9,14 @@ import array from './Qcr';
 
 var list = [0, 1, 2, 3]
 var z = 0;
-
+var myArray =[];
+var names = `ياسر سعود ناصر المحترش 	.
+سعود ناصر صالح المحترش `
+// myArray = names.split(".")
+ for (var i =1 ; i <= 1000 ; i++ ){
+myArray.push(i)
+}
+var zx =1
 export default class Qc extends Component {
 
     state = {
@@ -31,7 +38,9 @@ export default class Qc extends Component {
         NameOftype: [],
         Level: "",
         flash: ['', '', '', ''],
-        boxChoose : "box1"
+        boxChoose : "box1",
+        rand : "الاسم",
+        number : 0
 
 
 
@@ -102,7 +111,16 @@ export default class Qc extends Component {
         // data.server.splice(9, 1)
         this.setState(data)
     }
+    // setTimeout(this.myFunction, 3000)
+    // setInterval(myTimer, 1000)
 
+         timeFunction =()=> {
+        this.setState({
+            rand : myArray[Math.floor(Math.random() * myArray.length)],
+            
+        })
+
+      }
     //fetch
     changeHandler = (e) => {
 
@@ -166,7 +184,20 @@ export default class Qc extends Component {
         }
 
     }
+ 
+    time = ()=>{
+        var sol = setInterval(this.timeFunction, 50)
 
+        function timeo (){
+            clearInterval(sol)
+        }
+        setTimeout(timeo, 10000)
+        
+
+    }
+    stop =()=>{
+     
+    }
     shuffle = (o) => {
 
         for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
@@ -180,14 +211,7 @@ export default class Qc extends Component {
 
     render() {
 
-        // this.checkState()
-        // this.shuffle(this.state.Options)
-        // console.log(this.state.server)
-        // console.log(this.state.server2)
-        // console.log(this.state.server3)
-        // console.log(this.state[`${this.state.url}`][0])
-        // Level ={this.state.server}
-        console.log(array)
+      
         var Data1 = array.map((ele, i) => {
 
             return <BoxOfchoes ele={ele} i={i} the_question={this.theQuestion} />
@@ -201,11 +225,17 @@ export default class Qc extends Component {
             return <BoxOfchoes3 ele={ele} i={i} the_question={this.theQuestion} />
         })
 
+        var rand = this.state.rand
+         
+        
+        // console.log(this.state.number)
+        
         return (
             <div>
-                <h1 className="yasser">{this.state.url} </h1>
+                <h1 className="yasser">{rand} </h1>
+                {/* <button onClick={this.time}>Stop time</button> */}
 
-                <div onClick={this.changeHandler} className="main_top">
+                <div onClick={this.time} className="main_top">
                 </div>
                 <div className="qc_Part">
                     <div className="question">
@@ -225,7 +255,7 @@ export default class Qc extends Component {
                 </div>
                 <section className="qc">
                     <div className = "warp ">
-                        <div className="box1"> <p>.... Easy .... (5 points)</p></div>  {Data1}
+                         {Data1}
 
                     </div>
 

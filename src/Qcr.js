@@ -281,4 +281,4 @@ type: "multiple",}
 
 
 
-// export default array
+export default array
