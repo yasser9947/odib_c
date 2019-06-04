@@ -29,7 +29,7 @@ export default class Qc extends Component {
         Sport: ["https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple", "https://opentdb.com/api.php?amount=10&category=21&difficulty=medium&type=multiple", "https://opentdb.com/api.php?amount=10&category=21&difficulty=hard&type=multiple"],
         Computer: ["https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple", "https://opentdb.com/api.php?amount=10&category=18&difficulty=medium&type=multiple", "https://opentdb.com/api.php?amount=10&category=18&difficulty=hard&type=multiple"],
         server: [],
-        server2: [],
+        names: [],
         server3: [],
         the_question: "the_question",
         Options: ["Options 1", "Options 2", "Options 3", "Options 4"],
@@ -67,14 +67,15 @@ export default class Qc extends Component {
 
 
             })
-        fetch(this.state[`${this.state.url}`][1])
+        fetch(`https://script.google.com/macros/s/AKfycbyp4Wn3cfihxPGmKjfl8XPwBCJVYfCGB-qHOy57EFM__qOfNobG/exec`)
             .then(response => {
+                console.log(response)
                 return response.json()
             }).then(data => {
-                // console.log(data.results[0].question)
+                console.log(data.user)
 
                 return this.setState(prevState => ({
-                    server2: data.results
+                    names: data.user
                 }))
 
 
@@ -116,7 +117,7 @@ export default class Qc extends Component {
 
          timeFunction =()=> {
         this.setState({
-            rand : myArray[Math.floor(Math.random() * myArray.length)],
+            rand : this.state.names[Math.floor(Math.random() * this.state.names.length)],
             
         })
 
@@ -216,16 +217,18 @@ export default class Qc extends Component {
 
             return <BoxOfchoes ele={ele} i={i} the_question={this.theQuestion} />
         })
-        var Data2 = this.state.server2.map((ele, i) => {
+        var Data2 =array.map((ele, i) => {
 
             return <BoxOfchoes2 ele={ele} i={i} the_question={this.theQuestion} />
         })
-        var Data3 = this.state.server3.map((ele, i) => {
+        var Data3 =array.map((ele, i) => {
 
             return <BoxOfchoes3 ele={ele} i={i} the_question={this.theQuestion} />
         })
+console.log(this.state.names)
+console.log(this.state.rand)
 
-        var rand = this.state.rand
+        var rand = this.state.rand.name
          
         
         // console.log(this.state.number)
@@ -256,6 +259,14 @@ export default class Qc extends Component {
                 <section className="qc">
                     <div className = "warp ">
                          {Data1}
+
+                    </div>
+                    <div className = "warp ">
+                         {Data2}
+
+                    </div>
+                    <div className = "warp ">
+                         {Data3}
 
                     </div>
 
